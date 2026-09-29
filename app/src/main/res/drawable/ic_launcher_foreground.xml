@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- MindShield Shield & Brain Graphic -->
+    <path
+        android:fillColor="#4ECDC4"
+        android:pathData="M54,24 L30,34 V52 C30,68 40.5,82.5 54,86 C67.5,82.5 78,68 78,52 V34 Z"/>
+    <path
+        android:fillColor="#A78BFA"
+        android:pathData="M54,36 C47,36 42,41 42,48 C42,53 45,57 49,59 V66 H59 V59 C63,57 66,53 66,48 C66,41 61,36 54,36 Z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M52,68 H56 V72 H52 Z"/>
+</vector>

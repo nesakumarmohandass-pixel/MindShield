@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MindShield</string>
+    <string name="welcome_title">Welcome to MindShield</string>
+    <string name="welcome_desc">Your compassionate digital wellness companion.</string>
+    <string name="meet_twin_title">Meet your Digital Twin</string>
+    <string name="meet_twin_desc">Your twin reflects your digital habits.</string>
+    <string name="grant_permission_title">Grant Permission</string>
+    <string name="grant_permission_desc">We need usage access to track your screen time.</string>
+    <string name="next">Next</string>
+    <string name="get_started">Get Started</string>
+    <string name="open_settings">Open Settings</string>
+    <string name="good_morning">Good morning</string>
+    <string name="good_afternoon">Good afternoon</string>
+    <string name="good_evening">Good evening</string>
+</resources>
