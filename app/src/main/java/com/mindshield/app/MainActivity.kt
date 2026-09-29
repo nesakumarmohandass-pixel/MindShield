@@ -11,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import com.mindshield.app.ui.navigation.MindShieldNavHost
+import com.mindshield.app.ui.theme.MindShieldTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,15 +23,18 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         
         if (!hasUsageStatsPermission()) {
-            startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+            try {
+                startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+            } catch (e: Exception) {
+                // Ignore if device settings intent not supported
+            }
         }
         
         setContent {
-            // Assume MindShieldTheme exists
-            // MindShieldTheme {
+            MindShieldTheme {
                 val windowSizeClass = calculateWindowSizeClass(this)
                 MindShieldNavHost(windowSizeClass = windowSizeClass)
-            // }
+            }
         }
     }
 

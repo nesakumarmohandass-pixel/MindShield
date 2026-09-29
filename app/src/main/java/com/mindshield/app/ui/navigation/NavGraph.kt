@@ -2,45 +2,53 @@ package com.mindshield.app.ui.navigation
 
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.mindshield.app.ui.coach.CoachChatScreen
+import com.mindshield.app.ui.focus.FocusModeScreen
+import com.mindshield.app.ui.home.HomeScreen
+import com.mindshield.app.ui.insights.InsightsScreen
+import com.mindshield.app.ui.onboarding.OnboardingScreen
+import com.mindshield.app.ui.settings.SettingsScreen
 
 @Composable
 fun MindShieldNavHost(
     windowSizeClass: WindowSizeClass,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = Screen.Onboarding.route
+    startDestination: String = Screen.Home.route
 ) {
-    // In a real app, check DataStore for onboarding status
-    var isFirstLaunch by remember { mutableStateOf(true) }
-
     NavHost(
         navController = navController,
-        startDestination = if (isFirstLaunch) Screen.Onboarding.route else Screen.Home.route
+        startDestination = startDestination
     ) {
         composable(Screen.Onboarding.route) {
-            // OnboardingScreen(navController = navController)
+            OnboardingScreen(onFinish = {
+                navController.navigate(Screen.Home.route) {
+                    popUpTo(Screen.Onboarding.route) { inclusive = true }
+                }
+            })
         }
         composable(Screen.Home.route) {
-            // HomeScreen(navController = navController, windowSizeClass = windowSizeClass)
+            HomeScreen(
+                onNavigateToCoach = { navController.navigate(Screen.Coach.route) },
+                onNavigateToFocus = { navController.navigate(Screen.Focus.route) },
+                onNavigateToInsights = { navController.navigate(Screen.Insights.route) },
+                onNavigateToSettings = { navController.navigate(Screen.Settings.route) }
+            )
         }
         composable(Screen.Coach.route) {
-            // CoachScreen(navController = navController)
+            CoachChatScreen(onNavigateBack = { navController.popBackStack() })
         }
         composable(Screen.Insights.route) {
-            // InsightsScreen(navController = navController)
+            InsightsScreen()
         }
         composable(Screen.Focus.route) {
-            // FocusScreen(navController = navController)
+            FocusModeScreen()
         }
         composable(Screen.Settings.route) {
-            // SettingsScreen(navController = navController)
+            SettingsScreen()
         }
     }
 }
